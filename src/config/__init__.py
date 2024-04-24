@@ -1,1 +1,1 @@
-from .TrainConfig import *
+from .train_config import *

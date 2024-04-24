@@ -34,19 +34,22 @@ class Vqgan:
     # 这是accelerate的库混合精度训练，还有梯度累积
     train_accelerate_mixedPrecision = "no"
     train_accelerate_gradientAccumulationSteps = 1
-
+    # 评估
+    train_evalPerEpoch = 1
+    train_savePerEpochs = 1
+    eval_batchSize = 2
     # 模型定义
     model_name = 'vqgan'
     model_vae_pretrained = None
     model_dis_pretrained = None
     model_in_channels = data_channels
     model_out_channels = data_channels
-    # TODO
+    # 下采样上采样
     model_down_block_types = ("DownEncoderBlock2D", "DownEncoderBlock2D", "DownEncoderBlock2D", "DownEncoderBlock2D",)
     model_up_block_types = ("UpDecoderBlock2D", "UpDecoderBlock2D", "UpDecoderBlock2D", "UpDecoderBlock2D",)
-    # TODO 每一层，长宽减半，最后一层不变，相当于这个长宽都/8
+    # 每一层，长宽减半，最后一层不变，相当于这个长宽都/8
     model_block_out_channels = (128, 256, 256, 512)
-    # TODO 每个块中的层的数量
+    # 每个块中的层的数量
     model_layers_per_block = 2
     model_act_fn = "silu"  # Sigmoid Linear Unit
     # 隐含空间的通道数
@@ -67,6 +70,6 @@ class Vqgan:
     model_codebook_weight = 1.0
     model_disc_num_layers = 4
 
-    # TODO 每个Epoch跑5次，跑5个Epoch就停
+    # TODO 每个Epoch跑5次，跑5个step就停
     debug = False
     debug_time = 5

@@ -5,7 +5,7 @@ from .datasets import CelebADataset
 
 
 def get_dataset(config, transform=None):
-    if config.dataset == 'celeba':
+    if config.data_name == 'celeba':
         return get_celeba_dataset(config, transform)
 
 
